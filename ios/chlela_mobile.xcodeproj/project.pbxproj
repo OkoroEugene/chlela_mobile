@@ -13,6 +13,13 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		9043592826870E3B00B65265 /* DMSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9043592126870E3B00B65265 /* DMSans-Regular.ttf */; };
+		9043592926870E3B00B65265 /* DMSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9043592226870E3B00B65265 /* DMSans-Medium.ttf */; };
+		9043592A26870E3B00B65265 /* DMSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9043592326870E3B00B65265 /* DMSans-Bold.ttf */; };
+		9043592B26870E3B00B65265 /* DMSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9043592426870E3B00B65265 /* DMSans-BoldItalic.ttf */; };
+		9043592C26870E3B00B65265 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9043592526870E3B00B65265 /* OFL.txt */; };
+		9043592D26870E3B00B65265 /* DMSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9043592626870E3B00B65265 /* DMSans-MediumItalic.ttf */; };
+		9043592E26870E3B00B65265 /* DMSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9043592726870E3B00B65265 /* DMSans-Italic.ttf */; };
 		C48EC3143E066B54FD8DF349 /* libPods-chlela_mobile-chlela_mobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA18B3571EF185CA36E2136 /* libPods-chlela_mobile-chlela_mobileTests.a */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +48,13 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = chlela_mobile/main.m; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = chlela_mobile/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CF10B2E6BCC9E1EE05788AD /* libPods-chlela_mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-chlela_mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9043592126870E3B00B65265 /* DMSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSans-Regular.ttf"; sourceTree = "<group>"; };
+		9043592226870E3B00B65265 /* DMSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSans-Medium.ttf"; sourceTree = "<group>"; };
+		9043592326870E3B00B65265 /* DMSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSans-Bold.ttf"; sourceTree = "<group>"; };
+		9043592426870E3B00B65265 /* DMSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		9043592526870E3B00B65265 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		9043592626870E3B00B65265 /* DMSans-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSans-MediumItalic.ttf"; sourceTree = "<group>"; };
+		9043592726870E3B00B65265 /* DMSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSans-Italic.ttf"; sourceTree = "<group>"; };
 		C3D5DC24DAA78E9F0FB98655 /* Pods-chlela_mobile-chlela_mobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chlela_mobile-chlela_mobileTests.debug.xcconfig"; path = "Target Support Files/Pods-chlela_mobile-chlela_mobileTests/Pods-chlela_mobile-chlela_mobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DBA18B3571EF185CA36E2136 /* libPods-chlela_mobile-chlela_mobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-chlela_mobile-chlela_mobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -116,6 +130,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				9043592026870E3B00B65265 /* fonts */,
 				13B07FAE1A68108700A75B9A /* chlela_mobile */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* chlela_mobileTests */,
@@ -137,6 +152,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9043592026870E3B00B65265 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9043592126870E3B00B65265 /* DMSans-Regular.ttf */,
+				9043592226870E3B00B65265 /* DMSans-Medium.ttf */,
+				9043592326870E3B00B65265 /* DMSans-Bold.ttf */,
+				9043592426870E3B00B65265 /* DMSans-BoldItalic.ttf */,
+				9043592526870E3B00B65265 /* OFL.txt */,
+				9043592626870E3B00B65265 /* DMSans-MediumItalic.ttf */,
+				9043592726870E3B00B65265 /* DMSans-Italic.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		F73D1ED63B6CFAC161828CBC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +174,6 @@
 				C3D5DC24DAA78E9F0FB98655 /* Pods-chlela_mobile-chlela_mobileTests.debug.xcconfig */,
 				0883D76A37AA278BE7D0D2A8 /* Pods-chlela_mobile-chlela_mobileTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -243,8 +271,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9043592C26870E3B00B65265 /* OFL.txt in Resources */,
+				9043592E26870E3B00B65265 /* DMSans-Italic.ttf in Resources */,
+				9043592826870E3B00B65265 /* DMSans-Regular.ttf in Resources */,
+				9043592A26870E3B00B65265 /* DMSans-Bold.ttf in Resources */,
+				9043592926870E3B00B65265 /* DMSans-Medium.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				9043592D26870E3B00B65265 /* DMSans-MediumItalic.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				9043592B26870E3B00B65265 /* DMSans-BoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
