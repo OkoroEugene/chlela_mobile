@@ -1,12 +1,15 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import {View} from 'react-native';
+import { View, SafeAreaView } from 'react-native';
+import Button from '../../components/Button/Button';
 
 const Splash = () => {
     return (
-        <View>
-            
-        </View>
+        <SafeAreaView>
+            <Button
+                btnText="Test Button"
+            />
+        </SafeAreaView>
     );
 };
 
