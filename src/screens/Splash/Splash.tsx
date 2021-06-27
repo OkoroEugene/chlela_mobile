@@ -1,3 +1,4 @@
+import { CommonActions } from '@react-navigation/native';
 import React from 'react';
 import { Alert } from 'react-native';
 import { View, Image } from 'react-native';
@@ -7,7 +8,14 @@ import CenterView from '../../components/CenterView/CenterView';
 const Splash = ({ navigation }: any) => {
     React.useEffect(() => {
         setTimeout(() => {
-            navigation.navigate('Home');
+            navigation.dispatch(
+                CommonActions.reset({
+                  index: 1,
+                  routes: [
+                    { name: 'Home' },
+                  ],
+                })
+              );
         }, 2000);
     }, [])
 

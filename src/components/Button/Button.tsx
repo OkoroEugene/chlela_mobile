@@ -26,7 +26,15 @@ function CustomButton(props: Props) {
 
   return (
     <Pressable
-      style={[styles.button, btnStyles, styles.withShadow]}
+      style={[
+        styles.button,
+        btnStyles,
+        styles.withShadow,
+        { 
+          flexDirection: loading ? 'row' : undefined,
+          opacity: loading ? 0.7 : 1,
+        }
+      ]}
       onPress={onPress}
       disabled={loading}
     >

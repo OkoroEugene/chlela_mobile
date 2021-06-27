@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-native';
-import { Image } from 'react-native';
+import { bindActionCreators, AnyAction } from 'redux';
+import { connect } from 'react-redux';
+import { Alert, Pressable } from 'react-native';
+import { View, Image } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Button from '../../components/Button/Button';
 import CenterView from '../../components/CenterView/CenterView';
+import { createImage } from '../../actions/file/CreateImage';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Text from '../../config/AppText';
+import Whitespace from '../../components/Whitespace/Whitespace';
 
-function Home() {
+function Home(props: IHome) {
+    const [loading, setLoading] = useState(false);
     const [file, setFile] = useState<IFile>({
         uri: "",
         type: "",
@@ -14,6 +21,7 @@ function Home() {
     });
 
     const openPicker = () => {
+        setFile({uri:'../../assets/logo.png'})
         ImagePicker.openPicker({
             width: 300,
             height: 400,
@@ -32,18 +40,47 @@ function Home() {
             .catch(err => console.log(err))
     }
 
+    const handleSubmit = async () => {
+        setLoading(true);
+        const { createImage } = props;
+        const payload: IFile = {
+            uri: 'https://images.pexels.com/photos/8369440/pexels-photo-8369440.jpeg',
+            name: 'pexels-photo-8369440',
+            type: 'image/jpeg',
+        }
+
+        await createImage(payload);
+    }
+
     return (
-        <CenterView>
-            {/* {<Image
-                source={{ uri: file?.uri }}
-            />} */}
-            <Button
-                btnText="Open Gallery"
-                onPress={openPicker}
-                btnStyles={{ backgroundColor: '#0277FE' }}
-            />
-        </CenterView>
+        <>
+            <CenterView>
+                {file.uri ? <>
+                    <Image
+                        source={require('../../assets/logo.png')}
+                        style={{ width: 200, height: 200, resizeMode: 'cover' }}
+                    />
+                    <Whitespace />
+                    <Button
+                        btnText="Upload"
+                        onPress={handleSubmit}
+                        btnStyles={{ backgroundColor: '#0277FE' }}
+                        loading={loading}
+                    />
+                </> : <Pressable style={{ alignItems: 'center' }} onPress={openPicker}>
+                    <Icon name="cloud-upload-outline" size={60} style={{ opacity: 0.3 }} />
+                    <View style={{ width: '65%', }}>
+                        <Text style={{ opacity: 0.6, textAlign: 'center' }}>Select an image file and then click on the upload button</Text>
+                    </View>
+                </Pressable>}
+            </CenterView>
+        </>
     );
+}
+
+interface IHome {
+    file: any,
+    createImage: (payload: IFile) => void,
 }
 
 interface IFile {
@@ -53,4 +90,10 @@ interface IFile {
     path?: string,
 }
 
-export default Home;
+const mapStateToProps = (state: any) => ({
+    file: state.file,
+})
+
+const mapDispatchToProps = (dispatch: any) => bindActionCreators({ createImage }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

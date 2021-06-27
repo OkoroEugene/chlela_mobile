@@ -3,14 +3,14 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   button: {
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 4,
     elevation: 3,
     backgroundColor: 'black',
+    position: 'relative',
   },
   text: {
     fontSize: 16,
@@ -20,7 +20,9 @@ export default StyleSheet.create({
     color: 'white',
   },
   loader: {
-
+    // position: 'absolute',
+    // right: '2%',
+    marginLeft: 10,
   },
   withShadow: {
     shadowColor: '#000',
