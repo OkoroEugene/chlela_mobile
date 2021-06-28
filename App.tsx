@@ -27,4 +27,15 @@ function App() {
   );
 }
 
-export default Config.LOAD_STORYBOOK == 'true' ? StorybookUI : App;
+/**
+* use this for storybook
+* export default StorybookUI; 
+
+* use this for main app
+* should be this way: 
+* export default Config.LOAD_STORYBOOK == 'true' ? StorybookUI : App;
+* but there is this weird behaviour that happens when I export it that way
+* I will look into this issue to find out why it is so
+*/
+
+export default App;

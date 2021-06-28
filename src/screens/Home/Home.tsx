@@ -36,7 +36,7 @@ function Home(props: IHome) {
                 const { path, mime } = image;
                 const path_split: any = path?.split('/');
                 const name = path_split[path_split.length - 1];
-
+                
                 setFile({
                     uri: path,
                     name,
