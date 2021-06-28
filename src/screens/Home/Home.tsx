@@ -14,14 +14,15 @@ import { Alert } from 'react-native';
 import Config from 'react-native-config';
 import styles from './Home.styles';
 import ImagePreview from '../../components/ImagePreview/ImagePreview';
+import LoadingView from '../../components/LoadingView/LoadingView';
 
 function Home(props: IHome) {
     const [loading, setLoading] = useState(false);
+    const [loadImg, setLoadImg] = useState(false);
     const [file, setFile] = useState<IFile>({
         uri: null,
         type: null,
         name: null,
-        path: null,
     });
     const [updatedImg, setUpdatedImg] = useState(null);
 
@@ -32,11 +33,13 @@ function Home(props: IHome) {
             cropping: true
         })
             .then(image => {
-                const { sourceURL, path, filename, mime } = image;
+                const { path, mime } = image;
+                const path_split: any = path?.split('/');
+                const name = path_split[path_split.length - 1];
+
                 setFile({
-                    uri: sourceURL,
-                    path,
-                    name: filename,
+                    uri: path,
+                    name,
                     type: mime,
                 });
             })
@@ -103,8 +106,11 @@ function Home(props: IHome) {
                     <Image
                         source={{ uri: `${Config.BASE_URL}/${updatedImg}` }}
                         style={styles.updatedImg}
+                        onLoadStart={() => setLoadImg(true)}
+                        onLoadEnd={() => setLoadImg(false)}
                     />
-                    <Button
+                    {loadImg && <LoadingView />}
+                    {!loadImg && <Button
                         btnText="Go again!"
                         onPress={reset}
                         btnStyles={{ backgroundColor: '#0277FE', marginTop: 20 }}
@@ -114,7 +120,7 @@ function Home(props: IHome) {
                             color={"#fff"}
                             style={{ marginRight: 5 }}
                         />}
-                    />
+                    />}
                 </>}
             </CenterView>
         </>
@@ -130,7 +136,6 @@ interface IFile {
     uri?: string | null,
     type?: string | null,
     name?: string | null,
-    path?: string | null,
 }
 
 const mapStateToProps = (state: any) => ({

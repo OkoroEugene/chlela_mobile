@@ -12,6 +12,8 @@ addDecorator(withKnobs);
 // import stories
 configure(() => {
   require('../src/components/Button/Button.stories');
+  require('../src/components/LoadingView/LoadingView.stories');
+  require('../src/components/ImagePreview/ImagePreview.stories');
 }, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters
