@@ -13,16 +13,16 @@ import Whitespace from '../../components/Whitespace/Whitespace';
 import { useEffect } from 'react';
 import { Alert } from 'react-native';
 import Config from 'react-native-config';
-
-const { width, height } = Dimensions.get("screen");
+import styles from './Home.styles';
+import ImagePreview from '../../components/ImagePreview/ImagePreview';
 
 function Home(props: IHome) {
     const [loading, setLoading] = useState(false);
     const [file, setFile] = useState<IFile>({
-        uri: "",
-        type: "",
-        name: "",
-        path: "",
+        uri: null,
+        type: null,
+        name: null,
+        path: null,
     });
     const [updatedImg, setUpdatedImg] = useState(null);
 
@@ -73,49 +73,48 @@ function Home(props: IHome) {
     const reset = () => {
         setUpdatedImg(null);
         setLoading(false);
+        setFile({});
     }
 
     return (
         <>
             <CenterView>
-                {file?.uri ? <>
-                    <Image
-                        source={{ uri: file.uri }}
-                        style={{ width: '90%', height: (height * 0.5), resizeMode: 'cover' }}
+                {file?.uri && <ImagePreview
+                    uri={file.uri}
+                    loading={loading}
+                    reset={reset}
+                    handleSubmit={handleSubmit}
+                />}
+
+                {!updatedImg && !file?.uri && <Pressable
+                    style={styles.pressable}
+                    onPress={openPicker}
+                >
+                    <Icon
+                        name="cloud-upload-outline"
+                        size={60}
+                        style={{ opacity: 0.3 }}
                     />
-                    <Whitespace />
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', width: '100%' }}>
-                        <Button
-                            btnText="Upload"
-                            onPress={handleSubmit}
-                            btnStyles={{ backgroundColor: '#0277FE' }}
-                            loading={loading}
-                            Icon={<Icon name="cloud-upload-outline" size={20} color={"#fff"} style={{ marginRight: 5 }} />}
-                        />
-                        <Button
-                            btnText="Remove"
-                            onPress={() => setFile({})}
-                            btnStyles={{ backgroundColor: '#D3534B' }}
-                            Icon={<Icon name="close-circle-outline" size={20} color={"#fff"} style={{ marginRight: 5 }} />}
-                        />
-                    </View>
-                </> : !updatedImg ? <Pressable style={{ alignItems: 'center' }} onPress={openPicker}>
-                    <Icon name="cloud-upload-outline" size={60} style={{ opacity: 0.3 }} />
                     <View style={{ width: '65%', }}>
-                        <Text style={{ opacity: 0.6, textAlign: 'center' }}>Select an image file and then click on the upload button</Text>
+                        <Text style={styles.iconPreview}>Select an image file and then click on the upload button</Text>
                     </View>
-                </Pressable> : null}
+                </Pressable>}
 
                 {updatedImg && <>
                     <Image
                         source={{ uri: `${Config.BASE_URL}/${updatedImg}` }}
-                        style={{ width: '90%', height: (height * 0.5), resizeMode: 'contain' }}
+                        style={styles.updatedImg}
                     />
                     <Button
                         btnText="Go again!"
                         onPress={reset}
                         btnStyles={{ backgroundColor: '#0277FE', marginTop: 20 }}
-                        Icon={<Icon name="reload-outline" size={20} color={"#fff"} style={{ marginRight: 5 }} />}
+                        Icon={<Icon
+                            name="reload-outline"
+                            size={20}
+                            color={"#fff"}
+                            style={{ marginRight: 5 }}
+                        />}
                     />
                 </>}
             </CenterView>
@@ -129,10 +128,10 @@ interface IHome {
 }
 
 interface IFile {
-    uri?: string,
-    type?: string,
-    name?: string,
-    path?: string,
+    uri?: string | null,
+    type?: string | null,
+    name?: string | null,
+    path?: string | null,
 }
 
 const mapStateToProps = (state: any) => ({
