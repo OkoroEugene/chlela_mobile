@@ -9,7 +9,6 @@ import CenterView from '../../components/CenterView/CenterView';
 import { createImage } from '../../actions/file/CreateImage';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Text from '../../config/AppText';
-import Whitespace from '../../components/Whitespace/Whitespace';
 import { useEffect } from 'react';
 import { Alert } from 'react-native';
 import Config from 'react-native-config';
