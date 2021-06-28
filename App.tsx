@@ -31,4 +31,4 @@ function App() {
   );
 }
 
-export default Config.LOAD_STORYBOOK === 'true' ? StorybookUI : App;
+export default App;

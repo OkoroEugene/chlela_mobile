@@ -1,9 +1,7 @@
 import React, { ReactElement } from 'react';
-import { View } from 'react-native';
+import { View, Pressable, ActivityIndicator } from 'react-native';
 import Text from '../../config/AppText';
-import { Button, Spinner } from '@ui-kitten/components';
 import styles from './ButtonStyle';
-import { fontMedium } from '../../theme/fonts';
 
 interface Props {
   onPress?: () => void;
@@ -11,48 +9,39 @@ interface Props {
   btnText?: String;
   Icon?: JSX.Element;
   btnTextStyle?: object;
-  size?: string;
+  size?: "xs" | "sm" | "md" | "lg";
   loading?: boolean;
 }
 
 function CustomButton(props: Props) {
-  const { 
-    btnText, 
-    btnStyles, 
-    onPress, 
-    Icon, 
-    btnTextStyle, 
-    size, 
-    loading 
+  const {
+    btnText,
+    btnStyles,
+    onPress,
+    Icon,
+    btnTextStyle,
+    size,
+    loading
   } = props;
 
-  const LoadingIndicator = (props: any) => {
-    const spinner = <View style={[props.style, styles.indicator]}>
-      <Spinner size='small' status='basic' />
-    </View>;
-    return <View>{loading && spinner}</View>
-  };
-
   return (
-    <Button
+    <Pressable
+      style={[
+        styles.button,
+        btnStyles,
+        styles.withShadow,
+        {
+          flexDirection: loading ? 'row' : 'row',
+          opacity: loading ? 0.7 : 1,
+        }
+      ]}
       onPress={onPress}
-      size={size}
-      style={[styles.btn, btnStyles]}
-      accessoryLeft={LoadingIndicator}
       disabled={loading}
-      activeOpacity={loading ? 0.3 : 1}
-
     >
-      {(evaProps: any) => (
-        <>
-          {!loading && <Text
-            {...evaProps}
-            style={[fontMedium, btnTextStyle || styles.btnTextDefault]}>
-            {btnText}
-          </Text>}
-        </>
-      )}
-    </Button>
+      {Icon ? Icon : null}
+      <Text style={styles.text}>{btnText}</Text>
+      {loading ? <ActivityIndicator style={styles.loader} size='small' /> : null}
+    </Pressable>
   );
 }
 

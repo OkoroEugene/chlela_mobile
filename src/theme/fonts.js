@@ -1,21 +1,20 @@
 import { Dimensions, Platform, PixelRatio } from 'react-native';
 
 const fontRegular = {
-    fontFamily: "Poppins-Regular",
+    fontFamily: "DMSans-Regular",
 }
 
 const fontMedium = {
-    fontFamily: "Poppins-Medium",
+    fontFamily: "DMSans-Medium",
 }
 
 const fontItalics = {
-    fontFamily: "Poppins-Italic",
+    fontFamily: "DMSans-Italic",
 }
 
 const fontBold = {
-    fontFamily: "Poppins-Bold",
+    fontFamily: "DMSans-Bold",
 }
-
 
 const {
   width: SCREEN_WIDTH,

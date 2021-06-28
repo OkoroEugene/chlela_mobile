@@ -1,18 +1,19 @@
 import * as types from '../types';
 
 export const request = () => {
-    return { type: types.UPDATE_USER_REQUEST };
+    return { type: types.REQUEST };
 }
 
-export const success = () => {
+export const success = (response) => {
     return {
-        type: types.UPDATE_USER_SUCCESS
+        type: types.SUCCESS,
+        payload: response,
     };
 }
 
 export const failure = (error: any) => {
     return {
-        type: types.UPDATE_USER_FAILURE,
+        type: types.FAILURE,
         error
     };
 }
