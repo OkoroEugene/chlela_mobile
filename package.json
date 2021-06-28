@@ -17,8 +17,17 @@
     "@react-navigation/bottom-tabs": "^5.11.10",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
+    "@storybook/addon-storyshots": "^6.3.1",
     "@types/react-native-snap-carousel": "^3.8.3",
+<<<<<<< HEAD
     "axios": "^0.21.1",
+=======
+    "@ui-kitten/components": "^5.1.0",
+    "@ui-kitten/eva-icons": "^5.1.0",
+    "axios": "^0.21.1",
+    "native-base": "^3.0.2",
+    "qs": "^6.10.1",
+>>>>>>> tmp
     "react": "17.0.1",
     "react-native": "^0.64.2",
     "react-native-config": "^1.4.2",
@@ -30,12 +39,14 @@
     "react-native-svg": "^12.1.1",
     "react-native-vector-icons": "^8.1.0",
     "react-redux": "^7.2.4",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.3.0",
     "styled-system": "^5.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.14.7",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "@storybook/addon-actions": "^5.3",
@@ -58,7 +69,7 @@
     "react-devtools": "^4.13.5",
     "react-dom": "17.0.1",
     "react-test-renderer": "17.0.1",
-    "ts-jest": "^27.0.1",
+    "ts-jest": "^27.0.3",
     "typescript": "^3.8.3"
   },
   "resolutions": {
@@ -69,10 +80,16 @@
     "moduleFileExtensions": [
       "ts",
       "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testPathIgnorePatterns": [
+      "\\.snap$",
+      "<rootDir>/node_modules/"
+    ],
+    "cacheDirectory": ".jest/cache"
   }
 }

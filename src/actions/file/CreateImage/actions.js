@@ -4,9 +4,10 @@ export const request = () => {
     return { type: types.REQUEST };
 }
 
-export const success = () => {
+export const success = (response) => {
     return {
-        type: types.SUCCESS
+        type: types.SUCCESS,
+        payload: response,
     };
 }
 

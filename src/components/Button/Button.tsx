@@ -30,14 +30,15 @@ function CustomButton(props: Props) {
         styles.button,
         btnStyles,
         styles.withShadow,
-        { 
-          flexDirection: loading ? 'row' : undefined,
+        {
+          flexDirection: loading ? 'row' : 'row',
           opacity: loading ? 0.7 : 1,
         }
       ]}
       onPress={onPress}
       disabled={loading}
     >
+      {Icon ? Icon : null}
       <Text style={styles.text}>{btnText}</Text>
       {loading ? <ActivityIndicator style={styles.loader} size='small' /> : null}
     </Pressable>

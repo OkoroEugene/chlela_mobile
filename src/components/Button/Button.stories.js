@@ -3,7 +3,7 @@ import { text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react-native';
 import React from 'react';
 import { Text } from 'react-native';
-import Button from '../../../src/components/Button/Button';
+import Button from './Button'
 import CenterView from '../CenterView/CenterView';
 
 storiesOf('Button', module)

@@ -2,7 +2,7 @@ import * as types from '../actions/file/types';
 
 export const initialState = {
   processing: false,
-  file: [],
+  file: null,
   error: null,
 }
 
@@ -20,7 +20,7 @@ export default function fileReducers(state = initialState, action) {
 }
 
 const update = (state, action) => ({
-  file: action.type === types.SUCCESS ? action.payload : [],
+  file: action.type === types.SUCCESS ? action.payload : null,
   processing: action.type === types.REQUEST ? true : false,
   error: typeof action.type === "string" && action.type.includes("FAILURE") ? action.error : null,
 })

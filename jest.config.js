@@ -1,5 +1,7 @@
-module.exports = {
-    preset: 'ts-jest',
-    coverageDirectory: 'coverage',
-    collectCoverageFrom: ['src/**/*.{ts,tsx,js,jsx}', '!src/**/*.d.ts'],
-  };
+// module.exports = {
+//     roots: ['<rootDir>/src'],
+//     transform: {
+//         '^.+\\.(ts|tsx)': 'ts-jest',
+//     },
+//     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+// }

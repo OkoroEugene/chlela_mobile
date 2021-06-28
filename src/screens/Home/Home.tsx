@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { bindActionCreators, AnyAction } from 'redux';
 import { connect } from 'react-redux';
-import { Alert, Pressable } from 'react-native';
+import { Pressable, Dimensions, } from 'react-native';
 import { View, Image } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Button from '../../components/Button/Button';
@@ -9,33 +9,36 @@ import CenterView from '../../components/CenterView/CenterView';
 import { createImage } from '../../actions/file/CreateImage';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Text from '../../config/AppText';
-import Whitespace from '../../components/Whitespace/Whitespace';
+import { useEffect } from 'react';
+import { Alert } from 'react-native';
+import Config from 'react-native-config';
+import styles from './Home.styles';
+import ImagePreview from '../../components/ImagePreview/ImagePreview';
 
 function Home(props: IHome) {
     const [loading, setLoading] = useState(false);
     const [file, setFile] = useState<IFile>({
-        uri: "",
-        type: "",
-        name: "",
-        path: "",
+        uri: null,
+        type: null,
+        name: null,
+        path: null,
     });
+    const [updatedImg, setUpdatedImg] = useState(null);
 
     const openPicker = () => {
-        setFile({uri:'../../assets/logo.png'})
         ImagePicker.openPicker({
             width: 300,
             height: 400,
             cropping: true
         })
             .then(image => {
-                Alert.alert("image");
-                // const { sourceURL, path, filename, mime } = image;
-                // setFile({
-                //     uri: sourceURL,
-                //     path,
-                //     name: filename,
-                //     type: mime
-                // });
+                const { sourceURL, path, filename, mime } = image;
+                setFile({
+                    uri: sourceURL,
+                    path,
+                    name: filename,
+                    type: mime,
+                });
             })
             .catch(err => console.log(err))
     }
@@ -44,35 +47,75 @@ function Home(props: IHome) {
         setLoading(true);
         const { createImage } = props;
         const payload: IFile = {
-            uri: 'https://images.pexels.com/photos/8369440/pexels-photo-8369440.jpeg',
-            name: 'pexels-photo-8369440',
-            type: 'image/jpeg',
+            uri: file.uri,
+            name: file.name,
+            type: file.type,
         }
 
         await createImage(payload);
     }
 
+    useEffect(() => {
+        if (typeof props.file.error === 'string') {
+            Alert.alert(props.file.error)
+            setLoading(false);
+        }
+        if (typeof props.file.file !== 'undefined' &&
+            props.file.file
+        ) {
+            setFile({});
+            setLoading(false);
+            setUpdatedImg(props.file.file.data);
+        }
+    }, [props.file])
+
+    const reset = () => {
+        setUpdatedImg(null);
+        setLoading(false);
+        setFile({});
+    }
+
     return (
         <>
             <CenterView>
-                {file.uri ? <>
-                    <Image
-                        source={require('../../assets/logo.png')}
-                        style={{ width: 200, height: 200, resizeMode: 'cover' }}
+                {file?.uri && <ImagePreview
+                    uri={file.uri}
+                    loading={loading}
+                    reset={reset}
+                    handleSubmit={handleSubmit}
+                />}
+
+                {!updatedImg && !file?.uri && <Pressable
+                    style={styles.pressable}
+                    onPress={openPicker}
+                >
+                    <Icon
+                        name="cloud-upload-outline"
+                        size={60}
+                        style={{ opacity: 0.3 }}
                     />
-                    <Whitespace />
-                    <Button
-                        btnText="Upload"
-                        onPress={handleSubmit}
-                        btnStyles={{ backgroundColor: '#0277FE' }}
-                        loading={loading}
-                    />
-                </> : <Pressable style={{ alignItems: 'center' }} onPress={openPicker}>
-                    <Icon name="cloud-upload-outline" size={60} style={{ opacity: 0.3 }} />
                     <View style={{ width: '65%', }}>
-                        <Text style={{ opacity: 0.6, textAlign: 'center' }}>Select an image file and then click on the upload button</Text>
+                        <Text style={styles.iconPreview}>Select an image file and then click on the upload button</Text>
                     </View>
                 </Pressable>}
+
+                {updatedImg && <>
+                    <Image
+                        source={{ uri: `${Config.BASE_URL}/${updatedImg}` }}
+                        style={styles.updatedImg}
+                    />
+                    <Button
+                        btnText="Go again!"
+                        onPress={reset}
+                        btnStyles={{ backgroundColor: '#0277FE', marginTop: 20 }}
+                        Icon={<Icon
+                            name="reload-outline"
+                            size={20}
+                            color={"#fff"}
+                            style={{ marginRight: 5 }}
+                        />}
+                    />
+                </>}
             </CenterView>
         </>
     );
@@ -84,10 +127,10 @@ interface IHome {
 }
 
 interface IFile {
-    uri?: string,
-    type?: string,
-    name?: string,
-    path?: string,
+    uri?: string | null,
+    type?: string | null,
+    name?: string | null,
+    path?: string | null,
 }
 
 const mapStateToProps = (state: any) => ({
