@@ -12,8 +12,8 @@ import AppNavigators from './src/navigation/navigation';
 import { Provider } from 'react-redux';
 import store from './src/store/createStore';
 import { navigationRef } from './src/navigation/NavigationService';
-import Config from 'react-native-config';
-import StorybookUI from './storybook'
+// import Config from 'react-native-config';
+// import StorybookUI from './storybook'
 
 function App() {
   return (

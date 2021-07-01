@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { bindActionCreators, AnyAction } from 'redux';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Pressable, Dimensions, } from 'react-native';
+import { Pressable, } from 'react-native';
 import { View, Image } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Button from '../../components/Button/Button';

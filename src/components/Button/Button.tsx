@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import { View, Pressable, ActivityIndicator } from 'react-native';
+import React from 'react';
+import { Pressable, ActivityIndicator } from 'react-native';
 import Text from '../../config/AppText';
 import styles from './ButtonStyle';
 
@@ -19,8 +19,6 @@ function CustomButton(props: Props) {
     btnStyles,
     onPress,
     Icon,
-    btnTextStyle,
-    size,
     loading
   } = props;
 

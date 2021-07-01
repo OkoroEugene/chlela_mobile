@@ -11,7 +11,7 @@ export const success = (response) => {
     };
 }
 
-export const failure = (error: any) => {
+export const failure = (error) => {
     return {
         type: types.FAILURE,
         error
